@@ -1,0 +1,3 @@
+interface WithId {
+  id: number
+}
