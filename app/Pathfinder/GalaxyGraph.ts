@@ -9,6 +9,8 @@ export interface PathEntry {
   cost: number
 }
 
+const HEAP_CAPACITY = 1000000
+
 /**
  * Graph class
  */
@@ -75,8 +77,8 @@ export default class GalaxyGraph {
     source: System,
     destination: System,
     distanceToDestination: (node: GalaxyNode) => number
-  ): PathEntry[] {
-    const openList = new MinQueue(10000)
+  ): [PathEntry[], number] {
+    const openList = new MinQueue(HEAP_CAPACITY)
     openList.push(source.id, 0)
 
     this.nodes.get(source.id)?.setCost(0)
@@ -91,7 +93,7 @@ export default class GalaxyGraph {
           path.push({ system: cameFrom.getValue(), cost: cameFrom.getCost() as number })
           cameFrom = cameFrom.getCameFrom()
         }
-        return path.reverse()
+        return [path.reverse(), openList.size]
       }
 
       // v
@@ -107,6 +109,7 @@ export default class GalaxyGraph {
         }
       }
     }
-    throw new Error('Path not found')
+    return [[], openList.size]
+    //throw new Error('Path not found')
   }
 }

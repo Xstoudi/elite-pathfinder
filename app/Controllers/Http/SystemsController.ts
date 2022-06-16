@@ -11,7 +11,7 @@ export default class SystemsController {
     })
 
     return response.send({
-      systems: systems.filter((system) => system.name.includes(query)).slice(0, 10),
+      systems: systems.filter((system) => system.name.includes(query)).slice(0, 5),
     })
   }
 }

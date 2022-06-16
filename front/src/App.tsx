@@ -1,12 +1,11 @@
-import logo from './logo.svg'
-import './App.css'
+import Header from './parts/Header'
+import Main from './parts/Main'
 
 function App() {
   return (
-    <div className="App">
-      <h1 className="text-3xl font-bold underline">
-        Hello world!
-      </h1>
+    <div id='App' className='h-screen' data-theme='dark'>
+      <Header />
+      <Main />
     </div>
   )
 }

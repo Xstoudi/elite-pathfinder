@@ -8,12 +8,15 @@ import timer from '../timer'
 const MAX_DEVIATION = 0.2
 
 export interface PathfindingResult {
-  vertexCount: number
-  edgeCount: number
   path: PathEntry[]
-  timings: {
-    buildGraph: number
-    findPath: number
+  stats: {
+    vertexCount: number
+    edgeCount: number
+    heapSize: number
+    timings: {
+      buildGraph: number
+      findPath: number
+    }
   }
 }
 
@@ -67,7 +70,7 @@ function aStarAlgorithm(payload: AStarOptions): PathfindingResult {
   buildGraphTimer.stop()
 
   const findPathTimer = timer()
-  const path = graph.findPath(source, destination, (node) => {
+  const [path, heapSize] = graph.findPath(source, destination, (node) => {
     const fromSystem = node.getValue()
     return (
       (fromSystem.x - destination.x) ** 2 +
@@ -78,12 +81,15 @@ function aStarAlgorithm(payload: AStarOptions): PathfindingResult {
   findPathTimer.stop()
 
   return {
-    vertexCount: graph.vertexCount,
-    edgeCount: graph.edgeCount,
     path,
-    timings: {
-      buildGraph: buildGraphTimer.getTime(),
-      findPath: findPathTimer.getTime(),
+    stats: {
+      vertexCount: graph.vertexCount,
+      edgeCount: graph.edgeCount,
+      heapSize,
+      timings: {
+        buildGraph: buildGraphTimer.getTime(),
+        findPath: findPathTimer.getTime(),
+      },
     },
   }
 }
