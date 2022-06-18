@@ -105,7 +105,7 @@ export default function SearchForm({runSearch, isSearching}: SearchFormProps) {
           </label>
           <div className='input-group'>
             <span>DIST</span>
-            <input type='number' min='5' max='85' step='0.1' placeholder='50' value={range} onChange={e => setRange(Number(e.target.value))} className='input input-bordered w-full' />
+            <input type='number' min='10' max='85' step='0.1' placeholder='50' value={range} onChange={e => setRange(Number(e.target.value))} className='input input-bordered w-full' />
           </div>
           
         </div>

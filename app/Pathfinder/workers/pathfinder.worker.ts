@@ -39,7 +39,6 @@ function buildGraph(payload: AStarOptions): Graph {
     }
     graph.addVertex(system)
     for (const systemTo of systems) {
-      // si distance entre le système et la destination est supérieur à la distance à vol d'oiseau
       if (
         graph.distanceSquared(systemTo, destination) > birdDistance ||
         graph.distanceSquared(systemTo, source) > birdDistance

@@ -13,17 +13,20 @@ export default class PathfindersController {
 
   public async index({ request, response }: HttpContextContract) {
     const { from, to, range } = await request.validate({ schema: this.pathRequestSchema })
-
     const source = systems.find((system) => system.name === from)
     const destination = systems.find((system) => system.name === to)
 
     if (!source || !destination) {
-      return response.badRequest(`Source or destination not found.`)
+      console.log('hello')
+      return response.badRequest({ error: 'Source or destination not found.' })
     }
 
-    const result = await runPathfinder({ source, destination, rangeSquared: range ** 2 })
-
-    return response.send(result)
+    try {
+      const result = await runPathfinder({ source, destination, rangeSquared: range ** 2 })
+      return response.send(result)
+    } catch (err) {
+      return response.badRequest({ error: err.message })
+    }
   }
 
   public async dummy({ response }: HttpContextContract) {

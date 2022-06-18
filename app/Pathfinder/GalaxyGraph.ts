@@ -109,7 +109,6 @@ export default class GalaxyGraph {
         }
       }
     }
-    return [[], openList.size]
-    //throw new Error('Path not found')
+    throw new Error('Path not found')
   }
 }

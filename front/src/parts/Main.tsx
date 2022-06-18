@@ -6,18 +6,24 @@ import { SparklesIcon } from '@heroicons/react/outline'
 import PathEntry from '../types/PathEntry'
 import Journey from '../components/Journey'
 import PathfindingResult from '../types/PathfindingResult'
+import ErrorReporting from '../components/ErrorReporting'
 
 
 export default function Main() {
   const [result, setResult] = useState<PathfindingResult | null>(null)
-  const { post: pathfind, response, loading } = useFetch<PathfindingResult>(process.env.REACT_APP_API_URL)
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
+  const { post: pathfind, response, loading, error } = useFetch<PathfindingResult>(process.env.REACT_APP_API_URL)
   const runSearch = useCallback(async (source: string, destination: string, range: number) => {
+    setErrorMessage(null)
     setResult(null)
     const result = await pathfind('/pathfinder', { from: source, to: destination, range })
     if(response.ok) {
       setResult(result)
+    } else {
+      setErrorMessage((result as any).error)
     }
   }, [setResult, pathfind, response])
+  console.log(error, result)
 
   return (
     <div className='flex flex-col mx-auto items-center'>
@@ -31,6 +37,9 @@ export default function Main() {
       }
       {
         result !== null && <Journey journey={result} />
+      }
+      {
+        errorMessage && <ErrorReporting message={errorMessage} />
       }
     </div>
   )
