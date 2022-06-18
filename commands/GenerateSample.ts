@@ -7,6 +7,8 @@ import { BaseCommand } from '@adonisjs/core/build/standalone'
 
 import System from 'Contracts/interfaces/System'
 
+const MAX_DISTANCE_FROM_ORIGIN = 100
+
 export default class GenerateSample extends BaseCommand {
   public static commandName = 'generate:sample'
   public static description = 'Extract population sample from csv file.'
@@ -28,14 +30,17 @@ export default class GenerateSample extends BaseCommand {
       const spinner = this.logger.await('Extracting sample...')
       file.on('line', (line) => {
         const [id, , name, x, y, z, , isPopulated] = line.split(',')
-        if (isPopulated === '1') {
+        const nX = Number(x)
+        const nY = Number(y)
+        const nZ = Number(z)
+        if (nX ** 2 + nY ** 2 + nZ ** 2 < MAX_DISTANCE_FROM_ORIGIN ** 2) {
           populatedSystems.push({
             id: Number(id),
             //@ts-expect-error
             name: name.replaceAll('"', ''),
-            x: Number(x),
-            y: Number(y),
-            z: Number(z),
+            x: nX,
+            y: nY,
+            z: nZ,
           })
         }
       })
