@@ -51,7 +51,7 @@ export default function SearchForm({runSearch, isSearching}: SearchFormProps) {
   const handleSubmit = useCallback(() => {
     runSearch(source, destination, range)
   }, [runSearch, source, destination, range])
-  
+
   return (
     <Card title='Search'>
       <div className='flex flex-row w-full place-content-between flex-wrap'>
@@ -65,10 +65,10 @@ export default function SearchForm({runSearch, isSearching}: SearchFormProps) {
           </div>
           {
             sourceSuggestions.length > 1 && !sourceSuggestions.includes(debouncedSource) && (
-              <ul className='absolute top-full w-full'>
+              <ul className='absolute top-full w-full z-50 rounded-lg	bg-base-100 shadow-md'>
                 {
                   sourceSuggestions.map((system) => (
-                    <li className='border-b px-4 py-2' key={system} onClick={() => clickSourceSuggestion(system)}>
+                    <li className='border-b border-neutral px-4 py-2 last:border-0' key={system} onClick={() => clickSourceSuggestion(system)}>
                       {system}
                     </li>
                   ))
@@ -87,10 +87,10 @@ export default function SearchForm({runSearch, isSearching}: SearchFormProps) {
           </label>
           {
             destinationSuggestions.length > 1 && !destinationSuggestions.includes(debouncedDestination) && (
-              <ul className='absolute top-full w-full'>
+              <ul className='absolute top-full w-full z-50 rounded-lg	bg-base-100 shadow-md'>
                 {
                   destinationSuggestions.map(system => (
-                    <li className='border-b px-4 py-2' key={system} onClick={() => clickDestinationSuggestion(system)}>
+                    <li className='border-b border-neutral px-4 py-2 last:border-0' key={system} onClick={() => clickDestinationSuggestion(system)}>
                       {system}
                     </li>
                   ))
