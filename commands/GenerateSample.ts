@@ -1,4 +1,4 @@
-import fs from 'fs'
+import fs, { existsSync } from 'fs'
 import fsP from 'fs/promises'
 import readline from 'readline'
 
@@ -16,6 +16,10 @@ export default class GenerateSample extends BaseCommand {
   }
 
   public async run() {
+    if (!existsSync('datas/systems.csv')) {
+      await this.kernel.exec('fetch:systems', [])
+    }
+
     const populatedSystems: System[] = []
 
     await new Promise<void>((resolve) => {
@@ -25,7 +29,7 @@ export default class GenerateSample extends BaseCommand {
         terminal: false,
       })
 
-      const spinner = this.logger.await('Extracting sample...')
+      const spinner = this.logger.await('Extracting sample')
       file.on('line', (line) => {
         const [id, , name, x, y, z, , isPopulated] = line.split(',')
         if (isPopulated === '1') {
@@ -47,7 +51,7 @@ export default class GenerateSample extends BaseCommand {
       })
     })
 
-    const spinner = this.logger.await('Writing sample...')
+    const spinner = this.logger.await('Writing sample')
     await fsP.writeFile('datas/populated-systems.json', JSON.stringify(populatedSystems), {
       encoding: 'utf8',
     })
