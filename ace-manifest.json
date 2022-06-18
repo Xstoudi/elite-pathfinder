@@ -1,12 +1,12 @@
 {
   "commands": {
-    "build:workers": {
+    "fetch:systems": {
       "settings": {
         "loadApp": false,
         "stayAlive": false
       },
-      "commandPath": "./commands/BuildWorkers",
-      "commandName": "build:workers",
+      "commandPath": "./commands/FetchSystems",
+      "commandName": "fetch:systems",
       "description": "",
       "args": [],
       "aliases": [],

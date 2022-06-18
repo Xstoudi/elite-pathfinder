@@ -5,3 +5,5 @@ coverage
 .DS_STORE
 .env
 tmp
+datas/populated-systems.json
+datas/systems.csv
