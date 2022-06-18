@@ -5,8 +5,6 @@ import Graph, { PathEntry } from '../GalaxyGraph'
 import systems from '../systems'
 import timer from '../timer'
 
-const MAX_DEVIATION = 0.2
-
 export interface PathfindingResult {
   path: PathEntry[]
   stats: {
@@ -33,12 +31,25 @@ function buildGraph(payload: AStarOptions): Graph {
   const birdDistance = graph.distanceSquared(source, destination)
 
   for (const system of systems) {
-    if (graph.distanceSquared(system, destination) > birdDistance * (1 + MAX_DEVIATION) ** 2) {
+    if (system.id === source.id) {
+      console.log('source found !')
+    }
+    if (system.id === destination.id) {
+      console.log('destination found !')
+    }
+    if (
+      graph.distanceSquared(system, destination) > birdDistance ||
+      graph.distanceSquared(system, source) > birdDistance
+    ) {
       continue
     }
     graph.addVertex(system)
     for (const systemTo of systems) {
-      if (graph.distanceSquared(systemTo, destination) > birdDistance * (1 + MAX_DEVIATION) ** 2) {
+      // si distance entre le système et la destination est supérieur à la distance à vol d'oiseau
+      if (
+        graph.distanceSquared(systemTo, destination) > birdDistance ||
+        graph.distanceSquared(systemTo, source) > birdDistance
+      ) {
         continue
       }
 
