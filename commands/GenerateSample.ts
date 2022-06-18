@@ -7,7 +7,7 @@ import { BaseCommand } from '@adonisjs/core/build/standalone'
 
 import System from 'Contracts/interfaces/System'
 
-const MAX_DISTANCE_FROM_ORIGIN = 100
+const MAX_DISTANCE_FROM_ORIGIN = 300
 
 export default class GenerateSample extends BaseCommand {
   public static commandName = 'generate:sample'
@@ -37,10 +37,9 @@ export default class GenerateSample extends BaseCommand {
         const nX = Number(x)
         const nY = Number(y)
         const nZ = Number(z)
-        if (nX ** 2 + nY ** 2 + nZ ** 2 < MAX_DISTANCE_FROM_ORIGIN ** 2) {
+        if (nX ** 2 + nY ** 2 + nZ ** 2 < MAX_DISTANCE_FROM_ORIGIN ** 2 && isPopulated === '1') {
           populatedSystems.push({
             id: Number(id),
-            //@ts-expect-error
             name: name.replaceAll('"', ''),
             x: nX,
             y: nY,

@@ -31,12 +31,6 @@ function buildGraph(payload: AStarOptions): Graph {
   const birdDistance = graph.distanceSquared(source, destination)
 
   for (const system of systems) {
-    if (system.id === source.id) {
-      console.log('source found !')
-    }
-    if (system.id === destination.id) {
-      console.log('destination found !')
-    }
     if (
       graph.distanceSquared(system, destination) > birdDistance ||
       graph.distanceSquared(system, source) > birdDistance
