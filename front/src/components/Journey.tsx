@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useState } from 'react'
-import PathEntry from '../types/PathEntry'
 import PathfindingResult from '../types/PathfindingResult'
 import Card from './Card'
 import Stats from './Stats'
@@ -33,7 +32,7 @@ export default function Journey({ journey: { path, stats } }: JourneyProps) {
     <Card title='Journey log' rightTitle={copied && <Copied />}>
       <div className='overflow-x-auto'>
         <Stats stats={{...stats, jumps: path.length - 1, distance: path[path.length - 1].cost}} />
-        <table className='table w-full'>
+        <table className='table w-full mt-4'>
           <thead>
             <tr>
               <th></th>

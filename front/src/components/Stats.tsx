@@ -8,7 +8,7 @@ interface StatsProps {
 export default function Stats({ stats }: StatsProps) {
   const { jumps, distance, timings: { buildGraph, findPath }, vertexCount, edgeCount } = stats
   return (
-    <div className='stats stats-vertical lg:stats-horizontal shadow'>
+    <div className='stats stats-vertical lg:stats-horizontal shadow w-full'>
       <div className='stat'>
         <div className='stat-title'>Distance</div>
         <div className='stat-value'>{distance.toFixed(2)} ly</div>

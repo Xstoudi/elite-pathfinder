@@ -1,9 +1,8 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useState } from 'react'
 import useFetch from 'use-http'
 import Card from '../components/Card'
 import SearchForm from '../components/SearchForm'
 import { SparklesIcon } from '@heroicons/react/outline'
-import PathEntry from '../types/PathEntry'
 import Journey from '../components/Journey'
 import PathfindingResult from '../types/PathfindingResult'
 import ErrorReporting from '../components/ErrorReporting'
@@ -31,7 +30,7 @@ export default function Main() {
       {
         loading && <Card title='Searching...'>
           <div className='w-full flex justify-center'>
-            <SparklesIcon className='h-10 w-10 text-blue-500 animate-pulse' />
+            <SparklesIcon className='h-20 w-20 text-blue-500 animate-pulse' />
           </div>
         </Card>
       }

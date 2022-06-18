@@ -3,7 +3,7 @@ import Main from './parts/Main'
 
 function App() {
   return (
-    <div id='App' className='h-screen' data-theme='dark'>
+    <div id='App' className='h-full' data-theme='dark'>
       <Header />
       <Main />
     </div>
