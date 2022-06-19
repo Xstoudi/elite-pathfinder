@@ -40,4 +40,4 @@ then start the client app:
 npm start
 ```
 
-The client is now up and running on [localhost:3000](https://localhost:3000).
+The client is now up and running on [localhost:3000](http://localhost:3000).
