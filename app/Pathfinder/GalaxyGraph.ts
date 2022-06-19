@@ -78,7 +78,7 @@ export default class GalaxyGraph {
     destination: System,
     distanceToDestination: (node: GalaxyNode) => number
   ): [PathEntry[], number] {
-    const openList = new MinQueue(HEAP_CAPACITY)
+    const openList = new MinQueue(HEAP_CAPACITY, [], [], Uint32Array as any, Float64Array as any)
     openList.push(source.id, 0)
 
     this.nodes.get(source.id)?.setCost(0)
