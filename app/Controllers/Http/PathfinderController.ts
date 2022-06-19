@@ -8,7 +8,7 @@ export default class PathfindersController {
   private pathRequestSchema = schema.create({
     from: schema.string([rules.systemName()]),
     to: schema.string([rules.systemName()]),
-    range: schema.number([rules.range(10, 80)]),
+    range: schema.number([rules.range(10, 85)]),
   })
 
   public async index({ request, response }: HttpContextContract) {

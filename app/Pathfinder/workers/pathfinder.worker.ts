@@ -51,9 +51,14 @@ function buildGraph(payload: AStarOptions): Graph {
         continue
       }
 
-      const distanceSquared =
-        (system.x - systemTo.x) ** 2 + (system.y - systemTo.y) ** 2 + (system.z - systemTo.z) ** 2
-      if (distanceSquared <= rangeSquared) {
+      const isInRange =
+        (system.x - systemTo.x) ** 2 +
+          (system.y - systemTo.y) ** 2 +
+          (system.z - systemTo.z) ** 2 <=
+        rangeSquared
+      const isNearer =
+        graph.distanceSquared(systemTo, destination) < graph.distanceSquared(system, destination)
+      if (isInRange && isNearer) {
         graph.addEdge(system, systemTo)
       }
     }

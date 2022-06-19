@@ -9,7 +9,7 @@ export interface PathEntry {
   cost: number
 }
 
-const HEAP_CAPACITY = 1000000
+const HEAP_CAPACITY = 100000
 
 /**
  * Graph class
@@ -34,12 +34,12 @@ export default class GalaxyGraph {
     const destinationNode = this.addVertex(destination)
 
     sourceNode.addAdjacent(destinationNode)
+    this.edgeCount++
 
     if (this.edgeDirection === GalaxyGraph.UNDIRECTED) {
       destinationNode.addAdjacent(sourceNode)
+      this.edgeCount++
     }
-
-    this.edgeCount++
 
     return [sourceNode, destinationNode]
   }

@@ -8,7 +8,7 @@ interface StatsProps {
 export default function Stats({ stats }: StatsProps) {
   const { jumps, distance, timings: { buildGraph, findPath }, vertexCount, edgeCount } = stats
   return (
-    <div className='stats stats-vertical lg:stats-horizontal shadow w-full'>
+    <div className='w-full shadow stats stats-vertical lg:stats-horizontal'>
       <div className='stat'>
         <div className='stat-title'>Distance</div>
         <div className='stat-value'>{distance.toFixed(2)} ly</div>
@@ -27,15 +27,15 @@ export default function Stats({ stats }: StatsProps) {
       </div>
   
       <div className='stat'>
-        <div className='stat-title'>Graph vertex</div>
+        <div className='stat-title'>Graph vertices</div>
         <div className='stat-value'>{vertexCount.toLocaleString()}</div>
         <div className='stat-desc'>(systems)</div>
       </div>
 
       <div className='stat'>
-        <div className='stat-title'>Edge</div>
-        <div className='stat-value'>{(edgeCount/2).toLocaleString()}</div>
-        <div className='stat-desc'>bidirectional!</div>
+        <div className='stat-title'>Graph edges</div>
+        <div className='stat-value'>{edgeCount.toLocaleString()}</div>
+        <div className='stat-desc'>directed!</div>
       </div>
   
     </div>
