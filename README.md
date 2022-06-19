@@ -1,6 +1,6 @@
 # Elite Pathfinder
 ## Requirements
-  >Node v17
+  Node v17 or higher
 
 ## Getting started
 ### Server
