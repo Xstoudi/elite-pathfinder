@@ -17,7 +17,6 @@ export default class PathfindersController {
     const destination = systems.find((system) => system.name === to)
 
     if (!source || !destination) {
-      console.log('hello')
       return response.badRequest({ error: 'Source or destination not found.' })
     }
 
